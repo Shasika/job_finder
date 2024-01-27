@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
                         <div class="profile-container mx-4 d-flex justify-content-center align-items-center">
-                            <span class="profile-letter">{{ user.name[0].toUpperCase() }}</span>
+                            <<span class="profile-letter">{{ user.name && user.name[0] ? user.name[0].toUpperCase() : '' }}</span>
                         </div>
                     </div>
                     <div class="user-data d-block mx-auto col-md-10 my-4">
