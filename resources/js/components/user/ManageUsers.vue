@@ -63,6 +63,10 @@ export default {
             ).then(response => {
                 if (response.data && response.data.data) {
                     this.usersList = response.data.data;
+                    this.usersList = this.usersList.map(user => ({
+                        ...user,
+                        status: user.status == '0' || user.status == 0 || user.status == 'false' || user.status == false ? false : true
+                    }));
                 }
             }).catch(error => {
                 // Handle error response
