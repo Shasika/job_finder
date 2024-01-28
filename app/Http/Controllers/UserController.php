@@ -28,7 +28,7 @@ class UserController extends Controller
         try {
             $user = User::where(['email' => $request->get('email')])->first();
 
-            if ($user->status == 0) {
+            if ($user && isset($user->status) && $user->status == 0) {
                 return response()->json(['error' => 'User is inactive. Please contact administrator'], 200);
             }
             if(!$token = JWTAuth::attempt($credentials)) {

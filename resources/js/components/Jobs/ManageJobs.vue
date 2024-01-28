@@ -129,9 +129,31 @@ export default {
                 showLoaderOnConfirm: true
             }).then((result) => {
                 if(result.value){
-                    axios.delete('/api/delete-job/'+ id
+                    axios.delete('/api/delete-job/'+ id,{
+                            headers: {
+                                Authorization: `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+                            }
+                        }
                     ).then(response => {
                         this.getJobList();
+                    }).catch(error => {
+                        // Handle error response
+                        if (error.response && error.response.data && error.response.data.status) {
+                            const errors = error.response.data;
+
+                            this.$swal({
+                                icon: 'error',
+                                title: 'Login session is expired',
+                                text: 'Please log in again.',
+                                confirmButtonText: 'OK',
+                                timer: 3000
+                            }).then((result) => {
+                                localStorage.removeItem("user");
+                                localStorage.removeItem("token");
+                                this.$router.push('/');
+                                location.reload();
+                            });
+                        }
                     });
                 }
             })
