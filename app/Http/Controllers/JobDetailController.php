@@ -75,7 +75,7 @@ class JobDetailController extends Controller
             $getAllJobsQuery = $getAllJobsQuery->where('subject', 'like', '%' . $searchText . '%');
         }
 
-        if ($user && $user->role_id !== 1) {
+        if ($user && $user->role_id != 1) {
             $getAllJobsQuery = $getAllJobsQuery->where('created_by', $user->id);
         }
 

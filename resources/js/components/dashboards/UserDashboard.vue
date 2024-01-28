@@ -6,7 +6,7 @@
             </div>
         </center>
             <div class="card-list d-flex flex-row justify-content-start flex-wrap">
-                <div v-if="user && user[0].role_id !== 3">
+                <div v-if="user && user[0].role_id !== '3'">
                     <router-link to="/manage-jobs" class="nav-link">
                         <button type="button" class="btn btn-light">
                             <div class="tile wide job">
@@ -21,7 +21,7 @@
                         </button>
                     </router-link>
                 </div>
-                <div v-if="user && user[0].role_id === 1">
+                <div v-if="user && user[0].role_id === '1'">
                     <router-link to="/manage-users" class="nav-link">
                         <button type="button" class="btn btn-light">
                             <div class="tile wide quote">
