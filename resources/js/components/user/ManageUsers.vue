@@ -28,8 +28,8 @@
                         <td>{{ user.company_web ? user.company_web : '-' }}</td>
                         <td>{{ user.company_email ? user.company_email : '-' }}</td>
                         <td><div class="custom-control custom-switch d-flex justify-content-center">
-                            <input type="checkbox" v-model="user.status" @change="setUserStatus(user.status, user.id)" class="custom-control-input" id="customSwitches">
-                            <label class="custom-control-label" for="customSwitches"></label>
+                            <input type="checkbox" v-model="user.status" @change="setUserStatus(user.status, user.id)" class="custom-control-input" :id="'customSwitches' + index">
+                            <label class="custom-control-label" :for="'customSwitches' + index"></label>
                         </div></td>
                     </tr>
                     <tr v-else>
