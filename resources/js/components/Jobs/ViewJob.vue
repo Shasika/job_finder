@@ -93,7 +93,7 @@
                             <td>{{ application.candidate_name }}</td>
                             <td>{{ application.candidate_email }}</td>
                             <td class="text-center">
-                                <a @click="downloadFile(application.id, application.candidate_name)">
+                                <a @click="downloadFile(application.id, application.candidate_name, application.resume_file)">
                                     <i class="fa fa-download" aria-hidden="true"
                                        style="color: green; font-size: 22px"></i>
                                 </a>
@@ -206,8 +206,9 @@ export default {
             this.job.vacancy_end_date = jobData.vacancy_end_date;
             this.job.job_type = jobData.job_type.job_type;
         },
-        downloadFile(applicationId, candidateName) {
-            let fileNameForDownload = candidateName + '.pdf';
+        downloadFile(applicationId, candidateName, resumeFilePath) {
+            let fileType = this.getFileType(resumeFilePath);
+            let fileNameForDownload = candidateName + '.' + fileType;
             let contentType = '';
             axios.get("/api/download-resume/" + applicationId,
                 {
@@ -228,6 +229,14 @@ export default {
                     document.body.appendChild(link);
                     link.click();
             });
+        },
+        getFileType(filePath) {
+            const pathParts = filePath.split('/');
+            const fileName = pathParts[pathParts.length - 1];
+            const fileParts = fileName.split('.');
+            const fileExtension = fileParts[fileParts.length - 1];
+
+            return fileExtension;
         },
         decodeHtml(html = '') {
             var txt = document.createElement("textarea");
