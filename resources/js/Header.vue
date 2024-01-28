@@ -25,7 +25,7 @@
                                                         <div>Home</div>
                                                     </router-link>
                                                 </li>
-                                                <li v-if="isLogin && userRoleId !== 3">
+                                                <li v-if="isLogin && userRoleId != 3">
                                                     <router-link to="/user-dashboard">
                                                         <div>Admin</div>
                                                     </router-link>
